@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const morgan = require("morgan");
+const morgan = require("morgan"); //middleware
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
@@ -27,7 +27,7 @@ mongoose
 
 //middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); //get json data from request body
 app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
