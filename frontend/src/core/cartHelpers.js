@@ -12,10 +12,28 @@ export const addItem = (item, next) => {
             count: 1
         })
         //creating array to make no duplicate products 
-        cart = Arrya.from(new Set(cart.map((p) =>(p._id)))).map(id => {
+        cart = Array.from(new Set(cart.map((p) =>(p._id)))).map(id => {
             return cart.find(p => p._id === id);
         }); //new set remove duplicates 
         localStorage.setItem('cart', JSON.stringify(cart));
         next();
     }
 }
+
+//create a method to get total items on the cart
+
+export const itemTotal = () => {
+    if (typeof window !== 'undefined'){
+        if (localStorage.getItem('cart')) {
+            return JSON.parse(localStorage.getItem('cart')).length;
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+
