@@ -31,6 +31,8 @@ const Card = ({
     addItem(product, setRedirect(true));
   };
 
+  
+
   const shouldRedirect = redirect => {
     if (redirect) {
       return <Redirect to="/cart" />;

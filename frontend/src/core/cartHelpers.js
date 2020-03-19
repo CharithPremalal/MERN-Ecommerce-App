@@ -10,7 +10,7 @@ export const addItem = (item, next) => {
         cart.push({
             ...item,
             count: 1
-        })
+        });
         //creating array to make no duplicate products 
         cart = Array.from(new Set(cart.map((p) =>(p._id)))).map(id => {
             return cart.find(p => p._id === id);
@@ -18,7 +18,7 @@ export const addItem = (item, next) => {
         localStorage.setItem('cart', JSON.stringify(cart));
         next();
     }
-}
+};
 
 //create a method to get total items on the cart
 
