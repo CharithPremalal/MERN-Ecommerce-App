@@ -5,6 +5,7 @@ import Card from "./Card";
 import {isAuthenticated} from '../auth'
 import { Link } from 'react-router-dom';
 import DropIn from "braintree-web-drop-in-react";
+import { processPayment } from '../../../backend/controllers/braintree';
 
 
 
@@ -26,7 +27,7 @@ const Checkout = ({ products }) =>{
             if(data.error){
                 setData({...data, error: data.error})
             }else{
-                setData({...data, clientToken: data.clientToken});
+                setData({clientToken: data.clientToken});
             }
         })
     }
@@ -68,13 +69,25 @@ const Checkout = ({ products }) =>{
         //send the request payment method to server 
         let nonce;
         let getNonce = data.instance.requestPaymentMethod().then(data => {
-            console.log(data);
+            // console.log(data);
             nonce = data.nonce;
             //once you have nonce send nonce as paymentMethodNonce
-            console.log('send nonce and total to process: ',nonce, getTotal(products))
+            // console.log('send nonce and total to process: ',nonce, getTotal(products))
+            const paymentData = {
+                paymentMethodNonce: nonce,
+                amount: getTotal(products)
+            };
+            processPayment(userId, token, paymentData)
+                .then(response => {
+                    setData({...data, success: response.success });
+                    //empty cart
+                    //create order
+
+                })
+                .catch(error => console.log(error));
         })
         .catch(error => {
-            console.log('droping error: ', error);
+            // console.log('droping error: ', error);
             setData({...data, error: error.message});
         });
     };
@@ -86,7 +99,7 @@ const Checkout = ({ products }) =>{
                 <DropIn options={{
                     authorization: data.clientToken
                 }} onInstance={instance => (data.instance = instance)}/>
-                <button onClick={buy} className="btn btn-success">Pay</button>
+                <button onClick={buy} className="btn btn-success btn-block">Pay</button>
             </div>
         ) : null}
         
@@ -98,9 +111,19 @@ const Checkout = ({ products }) =>{
             {error}
         </div>
     );
+
+
+    const showSuccess = success => (
+        <div className="alert alert-danger" style={{ display: success ? '' : 'none' }}>
+            Thanks! Your payment was Successful
+        </div>
+    );
+
+
     return(
         <div>
     <h2> Total: ${getTotal()}</h2>
+            {showSuccess(data.success)}
             {showError(data.error)}
             {showCheckout()}
         </div>
