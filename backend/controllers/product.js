@@ -5,15 +5,18 @@ const Product = require("../models/product");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.productById = (req, res, next, id) => {
-  Product.findById(id).exec((err, product) => {
-    if (err || !product) {
-      return res.status(400).json({
-        error: "Product not found"
-      });
-    }
-    req.product = product;
-    next();
-  });
+  Product.findById(id)
+
+    .populate("category")
+    .exec((err, product) => {
+      if (err || !product) {
+        return res.status(400).json({
+          error: "Product not found"
+        });
+      }
+      req.product = product;
+      next();
+    });
 };
 
 exports.read = (req, res) => {
@@ -34,7 +37,7 @@ exports.create = (req, res) => {
 
     // Check for all filds
 
-    const { name, description, price, category, quantity, shipping } = fields
+    const { name, description, price, category, quantity, shipping } = fields;
 
     if (
       !name ||
@@ -45,7 +48,7 @@ exports.create = (req, res) => {
       !shipping
     ) {
       return res.status(400).json({
-        error: 'All fields are required'
+        error: "All fields are required"
       });
     }
 
@@ -104,7 +107,7 @@ exports.update = (req, res) => {
     // Check for all filds
 
     const { name, description, price, category, quantity, shipping } = fields;
- 
+
     if (
       !name ||
       !description ||
@@ -200,8 +203,6 @@ exports.listCategories = (req, res) => {
   });
 };
 
-
-
 exports.listBySearch = (req, res) => {
   let order = req.body.order ? req.body.order : "desc";
   let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
@@ -213,69 +214,66 @@ exports.listBySearch = (req, res) => {
   // console.log("findArgs", findArgs);
 
   for (let key in req.body.filters) {
-      if (req.body.filters[key].length > 0) {
-          if (key === "price") {
-              // gte -  greater than price [0-10]
-              // lte - less than
-              findArgs[key] = {
-                  $gte: req.body.filters[key][0],
-                  $lte: req.body.filters[key][1]
-              };
-          } else {
-              findArgs[key] = req.body.filters[key];
-          }
+    if (req.body.filters[key].length > 0) {
+      if (key === "price") {
+        // gte -  greater than price [0-10]
+        // lte - less than
+        findArgs[key] = {
+          $gte: req.body.filters[key][0],
+          $lte: req.body.filters[key][1]
+        };
+      } else {
+        findArgs[key] = req.body.filters[key];
       }
+    }
   }
 
   Product.find(findArgs)
-      .select("-photo")
-      .populate("Category")
-      .sort([[sortBy, order]])
-      .skip(skip)
-      .limit(limit)
-      .exec((err, data) => {
-          if (err) {
-              return res.status(400).json({
-                  error: "Products not found"
-              });
-          }
-          res.json({
-              size: data.length,
-              data
-          });
+    .select("-photo")
+    .populate("Category")
+    .sort([[sortBy, order]])
+    .skip(skip)
+    .limit(limit)
+    .exec((err, data) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Products not found"
+        });
+      }
+      res.json({
+        size: data.length,
+        data
       });
+    });
 };
 
-
-exports.photo = (req,res, next) =>{
-
-  if(req.product.photo.data){
-    res.set('Content-Type', req.product.photo.contentType)
-     return res.send(req.product.photo.data)
+exports.photo = (req, res, next) => {
+  if (req.product.photo.data) {
+    res.set("Content-Type", req.product.photo.contentType);
+    return res.send(req.product.photo.data);
   }
 
   next();
-
 };
 exports.listSearch = (req, res) => {
   // create query object to hold search value and category value
   const query = {};
   // assign search value to query.name
   if (req.query.search) {
-      query.name = { $regex: req.query.search, $options: 'i' };
-      // assigne category value to query.category
-      if (req.query.category && req.query.category != 'All') {
-          query.category = req.query.category;
+    query.name = { $regex: req.query.search, $options: "i" };
+    // assigne category value to query.category
+    if (req.query.category && req.query.category != "All") {
+      query.category = req.query.category;
+    }
+    // find the product based on query object with 2 properties
+    // search and category
+    Product.find(query, (err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler(err)
+        });
       }
-      // find the product based on query object with 2 properties
-      // search and category
-      Product.find(query, (err, products) => {
-          if (err) {
-              return res.status(400).json({
-                  error: errorHandler(err)
-              });
-          }
-          res.json(products);
-      }).select('-photo');
+      res.json(products);
+    }).select("-photo");
   }
 };
