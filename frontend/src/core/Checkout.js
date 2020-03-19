@@ -13,6 +13,7 @@ import DropIn from "braintree-web-drop-in-react";
 const Checkout = ({ products }) =>{
 
     const [data, setData] = useState({
+        loading: false,
         success: false,
         clientToken: null,
         error: '',
@@ -67,6 +68,9 @@ const Checkout = ({ products }) =>{
     }
 
     const buy = () =>{
+
+        setData({loading: true});
+
         //send the request payment method to server 
         let nonce;
         let getNonce = data.instance.requestPaymentMethod().then(data => {
@@ -82,13 +86,17 @@ const Checkout = ({ products }) =>{
                 .then(response => {
                     setData({...data, success: response.success });
                     emptyCart(() => {
-                        console.log('payment success and empty cart!')
+                        console.log('payment success and empty cart!');
+                        setData({loading: false});
                     })
                     //empty cart
                     //create order
 
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.log(error);
+                    setData({loading: false});
+                });
         })
         .catch(error => {
             // console.log('droping error: ', error);
@@ -101,7 +109,11 @@ const Checkout = ({ products }) =>{
         {data.clientToken !== null && products.length > 0 ? (
             <div>
                 <DropIn options={{
-                    authorization: data.clientToken
+                    authorization: data.clientToken,
+                    paypal:{
+                        flow: "vault"
+                    }
+
                 }} onInstance={instance => (data.instance = instance)}/>
                 <button onClick={buy} className="btn btn-success btn-block">Pay</button>
             </div>
@@ -123,10 +135,12 @@ const Checkout = ({ products }) =>{
         </div>
     );
 
+    const showLoading = loading => loading && <h2 className="text-danger">Loading...</h2>;
 
     return(
         <div>
     <h2> Total: ${getTotal()}</h2>
+            {showLoading(data.loading)}
             {showSuccess(data.success)}
             {showError(data.error)}
             {showCheckout()}
