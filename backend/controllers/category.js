@@ -58,7 +58,7 @@ exports.remove = (req, res) => {
         });
     });
 };
-
+// Categoty Delete
 exports.list = (req, res) => {
     Category.find().exec((err, data) => {
         if (err) {
