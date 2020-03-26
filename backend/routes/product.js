@@ -40,7 +40,14 @@ router.get("/products/search", listSearch);
 router.get("/products/related/:productId", listRelated);
 router.get("/products/categories", listCategories)
 
+
+
 router.param("userId", userById);
+
+
+
 router.param("productId", productById);
+
+
 
 module.exports = router;
