@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import Layout from '../core/Layout';
+// import Layout from '../core/Layout';
 import {signup} from '../auth';
 
 const Signup = () => {
@@ -43,20 +43,44 @@ const Signup = () => {
 
   const SignUpForm = () => (
     <form>
-      <div className="from-group">
-        <label className="text-muted">Name</label>
-        <input onChange={handleChange('name')} type="text" className="form-control" value={name}/>
+      <div className='from-group'>
+      <label htmlFor='text' className='sr-only'>
+          name
+        </label>
+        <input
+          onChange={handleChange('name')}
+          type='text'
+          className='form-control'
+          value={name}
+          placeholder='Name'
+        />
       </div>
-      <div className="from-group">
-        <label className="text-muted">Email</label>
-        <input onChange={handleChange('email')} type="email" className="form-control" value={email}/>
+      <div className='from-group'>
+      <label htmlFor='email' className='sr-only'>
+          Email
+        </label>
+        <input
+          onChange={handleChange('email')}
+          type='email'
+          className='form-control'
+          value={email}
+          placeholder='Email address'
+        />
       </div>
-      <div className="from-group">
-        <label className="text-muted">Password</label>
-        <input onChange={handleChange('password')} type="password" className="form-control" value={password}/>
+      <div className='from-group'>
+      <label htmlFor='password' className='sr-only'>
+          Password
+        </label>
+        <input
+          onChange={handleChange('password')}
+          type='password'
+          className='form-control'
+          value={password}
+          placeholder='***********'
+        />
       </div>
-      <button onClick={clickSubmit} className="btn btn-primary">
-        Submit
+      <button onClick={clickSubmit} className='btn btn-block login-btn mb-4'>
+        Sign-Up
       </button>
     </form>
   )
@@ -75,12 +99,41 @@ const Signup = () => {
 
 
   return (
-    <Layout titel='Signup' description='Signup to Node React E-commerce App' className="container col-md-8 offset-md-2">
-      {showSuccess()}
-      {showError()}
-      {SignUpForm()}
- 
-    </Layout>
+    <main className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
+      <div className='container'>
+        <div className='card login-card'>
+          <div className='row no-gutters'>
+            <div className='col-md-5'>
+              <img
+                src='../img/login.jpg'
+                alt='login'
+                className='login-card-img'
+              />
+            </div>
+            <div className='col-md-7'>
+              <div className='card-body'>
+                <div className='brand-wrapper'>
+                  <img src='../img/logo.svg' alt='logo' className='logo' />
+                </div>
+                <p className='login-card-description'>Join Us</p>
+                <form action='#!'>
+                {showSuccess()}
+                {showError()}
+                {SignUpForm()}
+                </form>
+                
+                <p className='login-card-footer-text'>
+                  Already a member?{' '}
+                  <a href='/Signin' className='text-reset'>
+                    Login
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 
