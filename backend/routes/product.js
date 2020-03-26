@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 const {
@@ -13,20 +13,20 @@ const {
   listBySearch,
   photo,
   listSearch
-} = require("../controllers/product");
-const { requireSignin, isAuth, isAdmin } = require("../controllers/auth");
-const { userById } = require("../controllers/user");
+} = require('../controllers/product');
+const { requireSignin, isAuth, isAdmin } = require('../controllers/auth');
+const { userById } = require('../controllers/user');
 
-router.get("/product/:productId", read);
+router.get('/product/:productId', read);
 
-router.post("/product/create/:userId", requireSignin, isAdmin, isAdmin, create);
+router.post('/product/create/:userId', requireSignin, isAdmin, isAdmin, create);
 
-router.post("/products/by/search", listBySearch);
+router.post('/products/by/search', listBySearch);
 
-router.get("/product/photo/:productId", photo);
+router.get('/product/photo/:productId', photo);
 
 router.delete(
-  "/product/:productId/:userId",
+  '/product/:productId/:userId',
   requireSignin,
   isAuth,
   isAdmin,
@@ -34,31 +34,21 @@ router.delete(
 );
 
 router.put(
-  "/product/:productId/:userId",
+  '/product/:productId/:userId',
   requireSignin,
   isAuth,
   isAdmin,
   update
 );
 
-router.get("/products", list);
+router.get('/products', list);
 
-router.get("/products/search", listSearch);
-router.get("/products/related/:productId", listRelated);
-router.get("/products/categories", listCategories);
+router.get('/products/search', listSearch);
+router.get('/products/related/:productId', listRelated);
+router.get('/products/categories', listCategories);
 
+router.param('userId', userById);
 
-
-router.param("userId", userById);
-
-
-
-router.param("productId", productById);
-
-<<<<<<< HEAD
-
+router.param('productId', productById);
 
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> 8b7e4715eae1d81703bee642a46ec9d7fef6b661

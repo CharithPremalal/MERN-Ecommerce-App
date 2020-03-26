@@ -9,7 +9,15 @@
 }
 
 .brand-wrapper .logo {
-    height: 37px;
+    height: 67px;
+}
+
+.menulogo {
+    height: 25px;
+}
+
+.alink {
+    color: #000;
 }
 
 .login-card {

@@ -68,6 +68,9 @@ const Signin = () => {
       <button onClick={clickSubmit} className='btn btn-block login-btn mb-4'>
         Login
       </button>
+      <a href='/' className='text-reset alink'>
+                    SignIn as Guest
+      </a>
     </form>
   );
 

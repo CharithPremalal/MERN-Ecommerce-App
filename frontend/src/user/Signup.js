@@ -78,6 +78,11 @@ const Signup = () => {
       <button onClick={clickSubmit} className='btn btn-block login-btn mb-4'>
         Sign-Up
       </button>
+      <a href='/' className='text-reset alink'>
+                    SignIn as Guest
+      </a>
+      
+      
     </form>
   );
 
@@ -128,6 +133,7 @@ const Signup = () => {
                   <a href='/Signin' className='text-reset'>
                     Login
                   </a>
+                  
                 </p>
               </div>
             </div>
