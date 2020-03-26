@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 // import Layout from '../core/Layout';
-import { signin, authenticate, isAuthenticated } from '../auth';
-import '../login.css';
+import { signin, authenticate, isAuthenticated } from "../auth";
+import "../login.css";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: 'helaka@gmail.com',
-    password: 'Pass@123',
-    error: '',
+    email: "helaka@gmail.com",
+    password: "Pass@123",
+    error: "",
     loading: false,
     redirectToReferrer: false
   });
@@ -45,7 +45,7 @@ const Signin = () => {
           Email
         </label>
         <input
-          onChange={handleChange('email')}
+          onChange={handleChange("email")}
           type='email'
           className='form-control'
           value={email}
@@ -57,7 +57,7 @@ const Signin = () => {
           Password
         </label>
         <input
-          onChange={handleChange('password')}
+          onChange={handleChange("password")}
           type='password'
           className='form-control'
           value={password}
@@ -74,7 +74,7 @@ const Signin = () => {
   const showError = () => (
     <div
       className='alert alert-danger'
-      style={{ display: error ? '' : 'none' }}
+      style={{ display: error ? "" : "none" }}
     >
       {error}
     </div>
@@ -115,7 +115,7 @@ const Signin = () => {
             <div className='col-md-7'>
               <div className='card-body'>
                 <div className='brand-wrapper'>
-                  <img src='../img/logo.svg' alt='logo' className='logo' />
+                  <img src='../img/logo.png' alt='logo' className='logo' />
                 </div>
                 <p className='login-card-description'>Sign into your account</p>
                 <form action='#!'>
@@ -128,7 +128,7 @@ const Signin = () => {
                   Forgot password?
                 </a>
                 <p className='login-card-footer-text'>
-                  Don't have an account?{' '}
+                  Don't have an account?{" "}
                   <a href='/Signup' className='text-reset'>
                     Register here
                   </a>

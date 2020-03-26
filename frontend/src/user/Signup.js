@@ -1,54 +1,50 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 // import Layout from '../core/Layout';
-import {signup} from '../auth';
+import { signup } from "../auth";
 
 const Signup = () => {
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-    error: '',
+    name: "",
+    email: "",
+    password: "",
+    error: "",
     success: false
   });
 
-  const {name, email, password, success, error} = values
+  const { name, email, password, success, error } = values;
 
   const handleChange = name => event => {
-    setValues({...values, error: false, [name]: event.target.value})
+    setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-
-  const clickSubmit = (event) => {
-    event.preventDefault()
-    setValues({...values, error: false}) 
-    signup({name, email, password})
-    .then(data => {
-      if(data.error){
-        setValues({...values, error: data.error, success: false})
-      }else{
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: false });
+    signup({ name, email, password }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false });
+      } else {
         setValues({
           ...values,
-          name: '',
-          email: '',
-          password: '',
-          error: '',
+          name: "",
+          email: "",
+          password: "",
+          error: "",
           success: true
-        })
+        });
       }
-
-    })
-  }
-  
+    });
+  };
 
   const SignUpForm = () => (
     <form>
       <div className='from-group'>
-      <label htmlFor='text' className='sr-only'>
+        <label htmlFor='text' className='sr-only'>
           name
         </label>
         <input
-          onChange={handleChange('name')}
+          onChange={handleChange("name")}
           type='text'
           className='form-control'
           value={name}
@@ -56,11 +52,11 @@ const Signup = () => {
         />
       </div>
       <div className='from-group'>
-      <label htmlFor='email' className='sr-only'>
+        <label htmlFor='email' className='sr-only'>
           Email
         </label>
         <input
-          onChange={handleChange('email')}
+          onChange={handleChange("email")}
           type='email'
           className='form-control'
           value={email}
@@ -68,11 +64,11 @@ const Signup = () => {
         />
       </div>
       <div className='from-group'>
-      <label htmlFor='password' className='sr-only'>
+        <label htmlFor='password' className='sr-only'>
           Password
         </label>
         <input
-          onChange={handleChange('password')}
+          onChange={handleChange("password")}
           type='password'
           className='form-control'
           value={password}
@@ -83,20 +79,25 @@ const Signup = () => {
         Sign-Up
       </button>
     </form>
-  )
+  );
 
   const showError = () => (
-    <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
+    <div
+      className='alert alert-danger'
+      style={{ display: error ? "" : "none" }}
+    >
       {error}
     </div>
-  )
+  );
 
   const showSuccess = () => (
-    <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
-      New account is create. Please <Link to="/signin"> SignIn </Link>
+    <div
+      className='alert alert-info'
+      style={{ display: success ? "" : "none" }}
+    >
+      New account is create. Please <Link to='/signin'> SignIn </Link>
     </div>
-  )
-
+  );
 
   return (
     <main className='d-flex align-items-center min-vh-100 py-3 py-md-0'>
@@ -113,17 +114,17 @@ const Signup = () => {
             <div className='col-md-7'>
               <div className='card-body'>
                 <div className='brand-wrapper'>
-                  <img src='../img/logo.svg' alt='logo' className='logo' />
+                  <img src='../img/logo.png' alt='logo' className='logo' />
                 </div>
                 <p className='login-card-description'>Join Us</p>
                 <form action='#!'>
-                {showSuccess()}
-                {showError()}
-                {SignUpForm()}
+                  {showSuccess()}
+                  {showError()}
+                  {SignUpForm()}
                 </form>
-                
+
                 <p className='login-card-footer-text'>
-                  Already a member?{' '}
+                  Already a member?{" "}
                   <a href='/Signin' className='text-reset'>
                     Login
                   </a>
