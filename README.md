@@ -1,6 +1,6 @@
 # MERN-Ecommerce-App
 
-MERN Stack E-Commerce App
+MERN Stack E-Commerce App made for Sports food supplement & accessories
 
 ## Introduction
 
@@ -34,11 +34,11 @@ npm install
 npm start
 ```
 
-## Contributing
+## Contribution
 
-|                  |                                             |
-| ---------------- | ------------------------------------------- |
-| Student Role No1 | cobsccomp182p-015 - M.H. Jayakody           |
-| Student Role No2 | cobsccomp182p-034 - D. B. Charles           |
-| Student Role No3 | cobsccomp182p-006 - S. P. C. L Premalal     |
-| Student Role No4 | cobsccomp182p-026 - W.H.M.P.M.B. Wijerathna |
+| GitHub Profile                     | Name                    |
+| ---------------------------------- | ----------------------- |
+| https://github.com/Helaka          | M.H. Jayakody           |
+| https://github.com/bryan354        | D. B. Charles           |
+| https://github.com/CharithPremalal | S. P. C. L Premalal     |
+| https://github.com/EmptyPM         | W.H.M.P.M.B. Wijerathna |
