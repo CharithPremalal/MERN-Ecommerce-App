@@ -135,7 +135,7 @@ body {
     text-align: center;
     background: url(img/Cover-2.jpg);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: 100%;
     height: 300px;
 }
 
@@ -155,6 +155,11 @@ body {
 
 .containerstyle {
     margin-bottom: 20px;
+}
+
+.menustyle {
+    font-family: Courier New;
+    font-weight: bold;
 }
 
 

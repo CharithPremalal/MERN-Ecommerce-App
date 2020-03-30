@@ -183,6 +183,13 @@ const UpdateProduct = ({ match }) => {
       </div>
 
       <button className='btn btn-outline-primary'>Update Product</button>
+      <a
+        class='btn btn-outline-danger float-right'
+        href='/admin/dashboard'
+        role='button'
+      >
+        Cancel
+      </a>
     </form>
   );
 
@@ -200,14 +207,14 @@ const UpdateProduct = ({ match }) => {
       className='alert alert-info'
       style={{ display: createdProduct ? '' : 'none' }}
     >
-      <h2>{`${createdProduct}`} is updated!</h2>
+      <h4>{`${createdProduct}`} is updated!</h4>
     </div>
   );
 
   const showLoading = () =>
     loading && (
       <div className='alert alert-success'>
-        <h2>Loading...</h2>
+        <h4>Loading...</h4>
       </div>
     );
 
@@ -220,17 +227,24 @@ const UpdateProduct = ({ match }) => {
   };
 
   return (
-    <Layout
-      title='Add a new product'
-      description={`G'day ${user.name}, ready to add a new product?`}
-    >
-      <div className='row'>
-        <div className='col-md-8 offset-md-2'>
-          {showLoading()}
-          {showSuccess()}
-          {showError()}
-          {newPostForm()}
-          {redirectUser()}
+    <Layout titel='Proteins Plus+' description={`Update Product`}>
+      <div className='container-fluid containerstyle'>
+        <div className='row'>
+          <div className='col-md-8 offset-md-2'>
+            <div className='card border-secondary'>
+              <h4 className='card-header bg-secondary '>
+                <i class='fa fa-pencil-square-o' aria-hidden='true'></i> Update
+                Product
+              </h4>
+              <div className='additemmargin'>
+                {showLoading()}
+                {showSuccess()}
+                {showError()}
+                {newPostForm()}
+                {redirectUser()}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

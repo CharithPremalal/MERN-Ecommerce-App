@@ -35,13 +35,13 @@ const ManageProducts = () => {
 
   return (
     <Layout
-      title='Manage Products'
-      description='Perform CRUD on products'
-      className='container-fluid'
+      titel='Proteins Plus+'
+      description='Manage Products'
+      className='container'
     >
       <div className='row'>
         <div className='col-12'>
-          <h2 className='text-center'>Total {products.length} products</h2>
+          <h4 className='text-left'>Total {products.length} products</h4>
           <hr />
           <ul className='list-group'>
             {products.map((p, i) => (

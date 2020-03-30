@@ -125,7 +125,7 @@ const AddProduct = () => {
         <label className='text-muted'>Price</label>
         <div class='input-group mb-3'>
           <div class='input-group-prepend'>
-            <span class='input-group-text'>$</span>
+            <span class='input-group-text'>Rs</span>
           </div>
           <input
             onChange={handleChange('price')}

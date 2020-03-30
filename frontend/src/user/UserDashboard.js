@@ -30,7 +30,7 @@ const Dashboard = () => {
   const userLinks = () => {
     return (
       <div className='card'>
-        <h4 className='card-header'>User Links</h4>
+        <h4 className='card-header'>User Dashboard</h4>
         <ul className='list-group'>
           <li className='list-group-item'>
             <Link className='nav-link text-dark' to='/cart'>
@@ -94,7 +94,7 @@ const Dashboard = () => {
     <Layout
       titel='Proteins Plus+'
       description={`Dashboard`}
-      className='container-fluid'
+      className='container'
     >
       <div className='row'>
         <div className='col-3'>{userLinks()}</div>
