@@ -14,25 +14,27 @@ const AdminDashboard = () => {
         <h4 className='card-header'>Admin Links</h4>
         <ul className='list-group'>
           <li className='list-group-item'>
-            <Link className='nav-link' to='/create/category'>
-              Create Category
+            <Link className='nav-link text-dark' to='/create/category'>
+              <i class='fa fa-sitemap' aria-hidden='true'></i> Create Category
             </Link>
           </li>
           <li className='list-group-item'>
-            <Link className='nav-link' to='/create/product'>
-              Create Product
-            </Link>
-          </li>
-
-          <li className='list-group-item'>
-            <Link className='nav-link' to='/admin/orders'>
-              View Orders
+            <Link className='nav-link text-dark' to='/create/product'>
+              <i class='fa fa-plus-square' aria-hidden='true'></i> Create
+              Product
             </Link>
           </li>
 
           <li className='list-group-item'>
-            <Link className='nav-link' to='/admin/products'>
-              Manage Products
+            <Link className='nav-link text-dark' to='/admin/orders'>
+              <i class='fa fa-cart-arrow-down' aria-hidden='true'></i> View
+              Orders
+            </Link>
+          </li>
+
+          <li className='list-group-item'>
+            <Link className='nav-link text-dark' to='/admin/products'>
+              <i class='fa fa-list-ul' aria-hidden='true'></i> Manage Products
             </Link>
           </li>
         </ul>
@@ -57,8 +59,8 @@ const AdminDashboard = () => {
 
   return (
     <Layout
-      titel='DashBoard'
-      description={`G'day ${name}!`}
+      titel='Proteins Plus+'
+      description={`Dashboard`}
       className='container'
     >
       <div className='row'>

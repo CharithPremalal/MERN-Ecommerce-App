@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Layout from "../core/Layout";
-import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import { createCategory } from "./apiAdmin";
+import React, { useState } from 'react';
+import Layout from '../core/Layout';
+import { isAuthenticated } from '../auth';
+import { Link } from 'react-router-dom';
+import { createCategory } from './apiAdmin';
 
 const AddCategory = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -14,13 +14,13 @@ const AddCategory = () => {
   const { user, token } = isAuthenticated();
 
   const handleChange = e => {
-    setError("");
+    setError('');
     setName(e.target.value);
   };
 
   const clickSubmit = e => {
     e.preventDefault();
-    setError("");
+    setError('');
     setSuccess(false);
 
     //make request to api to create category
@@ -28,7 +28,7 @@ const AddCategory = () => {
       if (data.error) {
         setError(true);
       } else {
-        setError("");
+        setError('');
         setSuccess(true);
       }
     });
@@ -53,14 +53,22 @@ const AddCategory = () => {
 
   const showSuccess = () => {
     if (success) {
-      return <h3 className='text-success'>Category is created</h3>;
+      return (
+        <div className='alert alert-info'>
+          <h5 className='text-success'>Category is created</h5>
+        </div>
+      );
     }
   };
 
   // valitation problem
   const showError = () => {
     if (error) {
-      return <h3 className='text-danger'>{error}</h3>;
+      return (
+        <div className='alert alert-danger'>
+          <h5 className='text-danger'>{error}</h5>
+        </div>
+      );
     }
   };
 
@@ -73,10 +81,7 @@ const AddCategory = () => {
   );
 
   return (
-    <Layout
-      np='Add a new category'
-      description={`G'day ${user.name}, Ready to add new category?`}
-    >
+    <Layout titel='Proteins Plus+' description={`Add a new category`}>
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
           {showSuccess()}

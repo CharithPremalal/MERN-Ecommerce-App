@@ -1,8 +1,8 @@
-/* body {
+body {
     font-family: "Karla", sans-serif;
-    background-color: #d0d0ce;
+    background-color: azure;
     min-height: 100vh;
-} */
+}
 
 .brand-wrapper {
     margin-bottom: 19px;
@@ -125,6 +125,36 @@
 .login-card-footer-nav a {
     font-size: 14px;
     color: #919aa3;
+}
+
+.additemmargin {
+    padding: 2% 2% 2% 2%;
+}
+
+.jumbotronstyle {
+    text-align: center;
+    background: url(img/Cover-2.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 300px;
+}
+
+.jumbotronstyle h1 {
+    font-weight: bolder;
+    color: #fff;
+    font-family: Courier New;
+    font-size: 60px;
+}
+
+.jumbotronstyle h4 {
+    font-weight: bolder;
+    color: #fff;
+    font-family: Courier New;
+    font-size: 30px;
+}
+
+.containerstyle {
+    margin-bottom: 20px;
 }
 
 

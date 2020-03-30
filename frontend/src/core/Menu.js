@@ -34,8 +34,6 @@ const Menu = ({ history }) => (
         </Link>
       </li>
 
-      
-
       {isAuthenticated() && isAuthenticated().user.role === 0 && (
         <li className='nav-item'>
           <Link
@@ -88,9 +86,7 @@ const Menu = ({ history }) => (
           style={isActive(history, '/cart')}
           to='/cart'
         >
-          <i class='fa fa-shopping-cart' aria-hidden='true'>
-            
-          </i>{' '}
+          <i class='fa fa-shopping-cart' aria-hidden='true'></i>{' '}
           <sup>
             <small className='cart-badge'>{itemTotal()}</small>
           </sup>

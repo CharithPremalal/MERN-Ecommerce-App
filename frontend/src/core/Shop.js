@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Layout from "./Layout";
-import Card from "./Card";
-import { getCategories, getFilteredProducts } from "./apiCore";
-import Checkbox from "./Checkbox";
-import RadioBox from "./RadioBox";
-import { prices } from "./fixedPrices";
+import React, { useState, useEffect } from 'react';
+import Layout from './Layout';
+import Card from './Card';
+import { getCategories, getFilteredProducts } from './apiCore';
+import Checkbox from './Checkbox';
+import RadioBox from './RadioBox';
+import { prices } from './fixedPrices';
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -75,7 +75,7 @@ const Shop = () => {
     // console.log("SHOP", filters, filterBy);
     const newFilters = { ...myFilters };
     newFilters.filters[filterBy] = filters;
-    if (filterBy === "price") {
+    if (filterBy === 'price') {
       let priceValues = handlePrice(filters);
       newFilters.filters[filterBy] = priceValues;
     }
@@ -102,24 +102,27 @@ const Shop = () => {
       className='container-fluid'
     >
       <div className='row'>
-        <div className='col-4'>
+        <div className='col-3 border'>
           <h4>Filter by categories</h4>
+          <hr />
           <ul>
             <Checkbox
               categories={categories}
-              handleFilters={filters => handleFilters(filters, "category")}
+              handleFilters={filters => handleFilters(filters, 'category')}
             />
           </ul>
+          <hr />
 
           <h4>Filter by price range</h4>
+          <hr />
           <div>
             <RadioBox
               prices={prices}
-              handleFilters={filters => handleFilters(filters, "price")}
+              handleFilters={filters => handleFilters(filters, 'price')}
             />
           </div>
         </div>
-        <div className='col-8'>
+        <div className='col-9'>
           <h2 className='mb-4'>Products</h2>
           <div className='row'>
             {filteredResults.map((product, i) => (

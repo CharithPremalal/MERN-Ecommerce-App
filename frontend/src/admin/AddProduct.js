@@ -88,7 +88,9 @@ const AddProduct = () => {
 
   const newPostForm = () => (
     <form className='mb-3' onSubmit={clickSubmit}>
-      <h4>Post Photo</h4>
+      <h6 className='text-secondary'>
+        <i class='fa fa-upload' aria-hidden='true'></i> Upload Photo
+      </h6>
       <div className='form-group'>
         <label className='btn btn-secondary'>
           <input
@@ -121,12 +123,20 @@ const AddProduct = () => {
 
       <div className='form-group'>
         <label className='text-muted'>Price</label>
-        <input
-          onChange={handleChange('price')}
-          type='number'
-          className='form-control'
-          value={price}
-        />
+        <div class='input-group mb-3'>
+          <div class='input-group-prepend'>
+            <span class='input-group-text'>$</span>
+          </div>
+          <input
+            onChange={handleChange('price')}
+            type='number'
+            className='form-control'
+            value={price}
+          />
+          <div class='input-group-append'>
+            <span class='input-group-text'>.00</span>
+          </div>
+        </div>
       </div>
 
       <div className='form-group'>
@@ -161,7 +171,17 @@ const AddProduct = () => {
         />
       </div>
 
+      <hr />
+
       <button className='btn btn-outline-primary'>Create Product</button>
+
+      <a
+        class='btn btn-outline-danger float-right'
+        href='/admin/dashboard'
+        role='button'
+      >
+        Cancel
+      </a>
     </form>
   );
 
@@ -179,28 +199,41 @@ const AddProduct = () => {
       className='alert alert-info'
       style={{ display: createdProduct ? '' : 'none' }}
     >
-      <h2>{`${createdProduct}`} is created!</h2>
+      <h5>{`${createdProduct}`} is created!</h5>
     </div>
   );
 
   const showLoading = () =>
     loading && (
       <div className='alert alert-success'>
-        <h2>Loading...</h2>
+        <h5>Loading...</h5>
       </div>
     );
 
   return (
     <Layout
-      titel='Add a new product'
-      description={`G'day ${user.name}, Ready to add new product?`}
+      titel='Proteins Plus+'
+      description={`Add New product`}
+      className='container'
     >
-      <div className='row'>
-        <div className='col-md-8 offset-md-2'>
-          {showLoading()}
-          {showSuccess()}
-          {showError()}
-          {newPostForm()}
+      <div className='container-fluid containerstyle'>
+        <div className='row'>
+          <div className='col-md-8 offset-md-2'>
+            <div className='card border-secondary'>
+              <h4 className='card-header bg-secondary '>
+                <i className='fa fa-plus-square' aria-hidden='true'></i> Add New
+                Product
+              </h4>
+              <div className='additemmargin'>
+                {showLoading()}
+
+                {showError()}
+
+                {newPostForm()}
+                {showSuccess()}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
