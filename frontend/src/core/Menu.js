@@ -16,7 +16,7 @@ const Menu = ({ history }) => (
     <ul className='nav navbar-dark bg-dark menustyle'>
       <li className='nav-item'>
         <Link className='nav-link' style={isActive(history, '/')} to='/'>
-          <img src='../img/logo.png' alt='logo' className='menulogo' />
+          <img src='../img/logoNew.png' alt='logo' className='menulogo' />
         </Link>
       </li>
       <li className='nav-item'>

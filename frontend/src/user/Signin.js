@@ -118,7 +118,7 @@ const Signin = () => {
             <div className='col-md-7'>
               <div className='card-body'>
                 <div className='brand-wrapper'>
-                  <img src='../img/logo.png' alt='logo' className='logo' />
+                  <img src='../img/logoNew.png' alt='logo' className='logo' />
                 </div>
                 <p className='login-card-description'>Sign into your account</p>
                 <form action='#!'>

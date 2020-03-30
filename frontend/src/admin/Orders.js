@@ -39,10 +39,10 @@ const Orders = () => {
   const showOrdersLength = () => {
     if (orders.length > 0) {
       return (
-        <h1 className='text-danger display-2'>Total orders: {orders.length}</h1>
+        <h4 className='text-danger text-muted'>Total orders: {orders.length}</h4>
       );
     } else {
-      return <h1 className='text-danger'>No orders</h1>;
+      return <h4 className='text-danger text-muted'>No orders</h4>;
     }
   };
 
@@ -67,7 +67,6 @@ const Orders = () => {
 
   const showStatus = o => (
     <div className='form-group'>
-      
       <select
         className='form-control'
         onChange={e => handleStatusChange(e, o._id)}
@@ -87,12 +86,13 @@ const Orders = () => {
   return (
     <Layout
       titel='Proteins Plus+'
-      description={ `Manage all the orders`}
+      description={`Manage all the orders`}
       className='container-fluid'
     >
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
           {showOrdersLength()}
+          <hr/>
 
           {orders.map((o, oIndex) => {
             return (
@@ -101,9 +101,9 @@ const Orders = () => {
                 key={oIndex}
                 style={{ borderBottom: '5px solid indigo' }}
               >
-                <h2 className='mb-5'>
-                  <span className='bg-primary'>Order ID: {o._id}</span>
-                </h2>
+                <h6 className='mb-5'>
+                  Order ID:<span className='text-primary'> {o._id}</span>
+                </h6>
 
                 <ul className='list-group mb-2'>
                   <li className='list-group-item'>{showStatus(o)}</li>

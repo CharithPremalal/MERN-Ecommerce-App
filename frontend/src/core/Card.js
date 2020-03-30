@@ -22,7 +22,7 @@ const Card = ({
       showViewProductButton && (
         <Link to={`/product/${product._id}`} className='mr-2'>
           <button className='btn btn-outline-primary mt-2 mb-2 card-btn-1'>
-            View Product
+            <i class='fa fa-eye' aria-hidden='true'></i> View Product
           </button>
         </Link>
       )
@@ -49,7 +49,7 @@ const Card = ({
           onClick={addToCart}
           className='btn btn-outline-warning mt-2 mb-2 card-btn-1  '
         >
-          Add to cart
+          <i class='fa fa-shopping-cart' aria-hidden='true'></i> Add to cart
         </button>
       )
     );
@@ -62,7 +62,7 @@ const Card = ({
           onClick={() => removeItem(product._id)}
           className='btn btn-outline-danger mt-2 mb-2 card-btn-1  '
         >
-          Remove Product
+          <i class='fa fa-trash' aria-hidden='true'></i> Remove Product
         </button>
       )
     );
@@ -87,7 +87,7 @@ const Card = ({
     return (
       cartUpdate && (
         <div>
-          <div className='inout-group mb-3'>
+          <div className='input-group mb-3'>
             <div className='input-group-prepand'>
               <span className='input-group-text'>Adjust quantity</span>
             </div>
@@ -104,20 +104,20 @@ const Card = ({
   };
 
   return (
-    <div className='card '>
-      <div className='card-header card-header-1 '>{product.name}</div>
-      <div className='card-body'>
+    <div className='card border-primary'>
+      <ShowImage item={product} url='product' />
+
+      <div className='card-body bg-light'>
         {shouldRedirect(redirect)}
-        <ShowImage item={product} url='product' />
-        <p className='card-p  mt-2'>{product.description.substring(0, 40)}</p>
-        <p className='card-p black-10'>${product.price}</p>
-        <p className='black-9'>
-          Category:
-          {product.category && product.category.name}
+
+        <p className='text-dark font-weight-bold productname'>{product.name}</p>
+        <p className='text-dark font-weight-bold productprice'>
+          Rs {product.price}
         </p>
-        <p className='black-8'>
-          Added on
-          {moment(product.createdAt).fromNow()}
+        <p className='productdes'>{product.description.substring(0, 40)}...</p>
+
+        <p className='text-muted'>
+          <small>Posted {moment(product.createdAt).fromNow()}</small>
         </p>
         {showStock(product.quantity)}
         <br />

@@ -47,18 +47,21 @@ const ManageProducts = () => {
             {products.map((p, i) => (
               <li
                 key={i}
-                className='list-group-item d-flex justify-content-between align-items-center'
+                className='list-group-item align-items-center'
               >
                 <strong>{p.name}</strong>
-                <Link to={`/admin/product/update/${p._id}`}>
-                  <span className='badge badge-warning badge-pill'>Update</span>
-                </Link>
+                <div class='d-flex flex-row-reverse align-items-center'>
                 <span
                   onClick={() => destroy(p._id)}
-                  className='badge badge-danger badge-pill'
+                  className='badge badge-danger badge-pill '
                 >
                   Delete
                 </span>
+                <Link to={`/admin/product/update/${p._id}`}>
+                  <span className='badge badge-warning badge-pill updatebtnstyle'>Update</span>
+                </Link>
+                
+                </div>
               </li>
             ))}
           </ul>

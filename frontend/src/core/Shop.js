@@ -102,8 +102,8 @@ const Shop = () => {
       className='container-fluid'
     >
       <div className='row'>
-        <div className='col-3 border'>
-          <h4>Filter by categories</h4>
+        <div className='col-3 border-info border-right'>
+          <h4 className='text-muted'>Filter by categories</h4>
           <hr />
           <ul>
             <Checkbox
@@ -113,7 +113,7 @@ const Shop = () => {
           </ul>
           <hr />
 
-          <h4>Filter by price range</h4>
+          <h4 className='text-muted'>Filter by price range</h4>
           <hr />
           <div>
             <RadioBox

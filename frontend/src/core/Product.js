@@ -33,14 +33,15 @@ const Product = props => {
 
   return (
     <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 10)
-      }
-      className='container-fluid'
+      titel='Proteins Plus+'
+      description={product && product.name}
+      className='container'
     >
       <div className='row'>
         <div className='col-8'>
+          <h4>
+            <a className="shoplinkstyle text-decoration-none" href='/shop'>Shop</a> / <a className="text-muted singleproductnamestyle">{product && product.name}</a>
+          </h4>
           {product && product.description && (
             <Card product={product} showViewProductButton={false} />
           )}

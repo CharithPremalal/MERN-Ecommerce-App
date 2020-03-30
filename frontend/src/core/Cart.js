@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Layout from "./Layout";
-import { getCart } from "./cartHelpers";
-import Card from "./Card";
-import Checkout from "./Checkout";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Layout from './Layout';
+import { getCart } from './cartHelpers';
+import Card from './Card';
+import Checkout from './Checkout';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -15,8 +15,8 @@ const Cart = () => {
 
   const showItems = items => {
     return (
-      <div>
-        <h2>Your cart has {`${items.length}`} items</h2>
+      <div className='cartitemsstyle'>
+        <h2 className="text-muted">Your cart has {`${items.length}`} items</h2>
         <hr />
         {items.map((product, i) => (
           <Card
@@ -28,30 +28,32 @@ const Cart = () => {
             setRun={setRun}
             run={run}
           />
+          
         ))}
+        <hr />
       </div>
     );
   };
 
   const noItemsMessage = () => (
-    <h2>
+    <h3 className="text-muted">
       Your cart is empty. <br /> <Link to='/shop'>Continue shopping</Link>
-    </h2>
+    </h3>
   );
 
   return (
     <Layout
-    titel='Proteins Plus+'
+      titel='Proteins Plus+'
       description='Shopping Cart'
-      className='container-fluid'
+      className='container'
     >
-      <div className='row'>
-        <div className='col-6'>
+      <div className='row justify-content-md-center'>
+        <div className='col-5'>
           {items.length > 0 ? showItems(items) : noItemsMessage()}
         </div>
 
         <div className='col-6'>
-          <h2 className='mb-4'>Your cart summary</h2>
+          <h2 className='mb-4 text-muted'>Your cart summary</h2>
           <hr />
           <Checkout products={items} setRun={setRun} run={run} />
         </div>

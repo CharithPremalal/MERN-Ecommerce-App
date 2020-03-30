@@ -9,11 +9,16 @@ body {
 }
 
 .brand-wrapper .logo {
-    height: 67px;
+    height: 77px;
 }
 
 .menulogo {
-    height: 25px;
+    height: 55px;
+}
+
+.nav {
+    height: 80px;
+    line-height: 60px;
 }
 
 .alink {
@@ -160,4 +165,39 @@ body {
 head .menustyle {
     font-family: Courier New;
     font-weight: bold;
+}
+
+.productname {
+    font-family: initial New;
+    font-size: 20px;
+}
+
+.productprice {
+    font-family: initial;
+    font-size: 18px;
+}
+
+.productdes {
+    font-family: initial New;
+}
+
+.shoplinkstyle {
+    font-family: initial New;
+}
+
+.singleproductnamestyle {
+    font-size: 18px;
+}
+
+.Purchasehistorystyle {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.cartitemsstyle {
+    margin-bottom: 5%;
+}
+
+.updatebtnstyle {
+    margin-right: 10px;
 }
