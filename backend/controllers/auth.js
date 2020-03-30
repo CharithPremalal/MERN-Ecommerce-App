@@ -48,12 +48,18 @@ exports.signout = (req, res) => {
   res.json({ message: 'Signout success ' })
 }
 
+
+
+
 exports.requireSignin = expressJwt({
   secret: process.env.JWT_SECRET,
   userProperty: 'auth'
 })
 
-exports.isAuth = (req, res, next) => {
+
+
+exports.isAuth = (req,res, next) => {
+
 
   let user = req.profile && req.auth && req.profile._id == req.auth._id
 
